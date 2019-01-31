@@ -1,143 +1,225 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
-<OfficeApp 
-          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
-          xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
-          xsi:type="TaskPaneApp">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
 
-  <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
+  <!-- See https://github.com/OfficeDev/Office-Add-in-Commands-Samples for documentation-->
 
-  <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
-  <Id>708444c5-ab38-47db-81f2-1e4d08529d27</Id>
+  <!-- BeginBasicSettings: Add-in metadata, used for all versions of Office unless override provided -->
 
-  <!--Version. Updates from the store only get triggered if there is a version change. -->
+  <!--IMPORTANT! Id must be unique for your add-in. If you clone this manifest ensure that you change this id to your own GUID -->
+  <Id>e504fb41-a92a-4526-b101-542f357b7acb</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>[Provider name]</ProviderName>
+  <ProviderName>CRS</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
-  <DisplayName DefaultValue="CRSTestAddIn" />
-  <Description DefaultValue="CRSTestAddIn"/>
-  <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
-  <IconUrl DefaultValue="~remoteAppUrl/Images/Button32x32.png" />
+  <!-- The display name of your add-in. Used on the store and various placed of the Office UI such as the add-ins dialog -->
+  <DisplayName DefaultValue="CRS Add-in Commands Sample" />
+  <Description DefaultValue="Sample that illustrates add-in commands basic control types and actions" />
+  <!--Icon for your add-in. Used on installation screens and the add-ins dialog -->
+  <IconUrl DefaultValue="https://i.imgur.com/oZFS95h.png" />
+  <SupportUrl DefaultValue="https://microsoft.com/support " />
 
-  <SupportUrl DefaultValue="http://www.contoso.com" />
   <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
   <AppDomains>
-    <AppDomain>AppDomain1</AppDomain>
-    <AppDomain>AppDomain2</AppDomain>
-    <AppDomain>AppDomain3</AppDomain>
+    <AppDomain>azurewebsites.net</AppDomain>
+    <AppDomain>ociodev.sharepoint.com</AppDomain>
+    <AppDomain>microsoft.com</AppDomain>
+    <AppDomain>office.com</AppDomain>
+    <AppDomain>jquery.com</AppDomain>
+    <AppDomain>imgur.com</AppDomain>   
   </AppDomains>
-  <!--End Basic Settings. -->
   
-  <!--Begin TaskPane Mode integration. This section is used if there are no VersionOverrides or if the Office client version does not support add-in commands. -->
+  <!--BeginTaskpaneMode integration. Office 2013 and any client that doesn't understand commands will use this section.
+    This section will also be used if there are no VersionOverrides -->
   <Hosts>
-    <Host Name="Document" />
+    <Host Name="Document"/>
   </Hosts>
   <DefaultSettings>
-    <SourceLocation DefaultValue="~remoteAppUrl/Home.html" />
+    <SourceLocation DefaultValue="https://ociodev.sharepoint.com/sites/AppDevTeamSite/Functions/Taskpane.html" />
   </DefaultSettings>
-  <!-- End TaskPane Mode integration.  -->
+  <!--EndTaskpaneMode integration -->
 
   <Permissions>ReadWriteDocument</Permissions>
 
-  <!-- Begin Add-in Commands Mode integration. -->
+  <!--BeginAddinCommandsMode integration-->
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
-    
-    <!-- The Hosts node is required. -->
     <Hosts>
-      <!-- Each host can have a different set of commands. -->
-      <!-- Excel host is Workbook, Word host is Document, and PowerPoint host is Presentation. -->
-      <!-- Make sure the hosts you override match the hosts declared in the top section of the manifest. -->
+      <!--Each host can have a different set of commands. Cool huh!? -->
+      <!-- Workbook=Excel Document=Word Presentation=PowerPoint -->
+      <!-- Make sure the hosts you override match the hosts declared in the top section of the manifest -->
       <Host xsi:type="Document">
-        <!-- Form factor. Currently only DesktopFormFactor is supported. -->
+        <!-- Form factor. Currenly only DesktopFormFactor is supported. We will add TabletFormFactor and PhoneFormFactor in the future-->
         <DesktopFormFactor>
-          <!--"This code enables a customizable message to be displayed when the add-in is loaded successfully upon individual install."-->
+
+          <!--GetStarted information used on the callout that appears when installing the add-in. 
+            Ensure you have build 16.0.6769 or above for GetStarted section to work-->
           <GetStarted>
-            <!-- Title of the Getting Started callout. The resid attribute points to a ShortString resource -->
-            <Title resid="Contoso.GetStarted.Title"/>
+            <!--Title of the Getting Started callout. resid points to a ShortString resource -->
+            <Title resid="CRS.GetStarted.Title"/>
 
-            <!-- Description of the Getting Started callout. resid points to a LongString resource -->
-            <Description resid="Contoso.GetStarted.Description"/>
+            <!--Description of the Getting Started callout. resid points to a LongString resource -->
+            <Description resid="CRS.GetStarted.Description"/>
 
-            <!-- Points to a URL resource which details how the add-in should be used. -->
-            <LearnMoreUrl resid="Contoso.GetStarted.LearnMoreUrl"/>
+            <!--Not used right now but you need to provide a valid resource. We will add code in the future to consume this URL. 
+							resid points to a Url resource -->
+            <LearnMoreUrl resid="CRS.GetStarted.LearnMoreUrl"/>
           </GetStarted>
-          <!-- Function file is a HTML page that includes the JavaScript where functions for ExecuteAction will be called. 
-            Think of the FunctionFile as the code behind ExecuteFunction. -->
-          <FunctionFile resid="Contoso.DesktopFunctionFile.Url" />
 
-          <!-- PrimaryCommandSurface is the main Office Ribbon. -->
+          <!--Function file is an html page that includes the javascript where functions for ExecuteAction will be called. 
+            Think of the FunctionFile as the "code behind" ExecuteFunction-->
+          <FunctionFile resid="CRS.FunctionFile.Url" />
+
+          <!--PrimaryCommandSurface==Main Office Ribbon-->
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
-            <!-- Use OfficeTab to extend an existing Tab. Use CustomTab to create a new tab. -->
-            <OfficeTab id="TabHome">
-              <!-- Ensure you provide a unique id for the group. Recommendation for any IDs is to namespace using your company name. -->
-              <Group id="Contoso.Group1">
-                <!-- Label for your group. resid must point to a ShortString resource. -->
-                <Label resid="Contoso.Group1Label" />
-                <!-- Icons. Required sizes 16,32,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX. -->
-                <!-- Use PNG icons. All URLs on the resources section must use HTTPS. -->
+            <!--Use OfficeTab to extend an existing Tab. Use CustomTab to create a new tab -->
+            <!-- Documentation includes all the IDs currently tested to work -->
+            <CustomTab id="CRS.Tab1">
+              <!--Group ID-->
+              <Group id="CRS.Tab1.Group1">
+                <!--Label for your group. resid must point to a ShortString resource -->
+                <Label resid="CRS.Tab1.GroupLabel" />
                 <Icon>
-                  <bt:Image size="16" resid="Contoso.tpicon_16x16" />
-                  <bt:Image size="32" resid="Contoso.tpicon_32x32" />
-                  <bt:Image size="80" resid="Contoso.tpicon_80x80" />
+                  <!-- Sample Todo: Each size needs its own icon resource or it will look distorted when resized -->
+                  <!--Icons. Required sizes 16,31,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX -->
+                  <!--Use PNG icons and remember that all URLs on the resources section must use HTTPS -->
+                  <bt:Image size="16" resid="CRS.TaskpaneButton.Icon" />
+                  <bt:Image size="32" resid="CRS.TaskpaneButton.Icon" />
+                  <bt:Image size="80" resid="CRS.TaskpaneButton.Icon" />
                 </Icon>
 
-                <!-- Control. It can be of type "Button" or "Menu". -->
-                <Control xsi:type="Button" id="Contoso.TaskpaneButton">
-                  <Label resid="Contoso.TaskpaneButton.Label" />
+                <!--Control. It can be of type "Button" or "Menu" -->
+                <Control xsi:type="Button" id="CRS.FunctionButton">
+                  <!--Label for your button. resid must point to a ShortString resource -->
+                  <Label resid="CRS.FunctionButton.Label" />
                   <Supertip>
-                    <!-- ToolTip title. resid must point to a ShortString resource. -->
-                    <Title resid="Contoso.TaskpaneButton.Label" />
-                    <!-- ToolTip description. resid must point to a LongString resource. -->
-                    <Description resid="Contoso.TaskpaneButton.Tooltip" />
+                    <!--ToolTip title. resid must point to a ShortString resource -->
+                    <Title resid="CRS.FunctionButton.Label" />
+                    <!--ToolTip description. resid must point to a LongString resource -->
+                    <Description resid="CRS.FunctionButton.Tooltip" />
                   </Supertip>
                   <Icon>
-                    <bt:Image size="16" resid="Contoso.tpicon_16x16" />
-                    <bt:Image size="32" resid="Contoso.tpicon_32x32" />
-                    <bt:Image size="80" resid="Contoso.tpicon_80x80" />
+                    <bt:Image size="16" resid="CRS.FunctionButton.Icon" />
+                    <bt:Image size="32" resid="CRS.FunctionButton.Icon" />
+                    <bt:Image size="80" resid="CRS.FunctionButton.Icon" />
                   </Icon>
-
-                  <!-- This is what happens when the command is triggered (E.g. click on the Ribbon). Supported actions are ExecuteFunction or ShowTaskpane. -->
-                  <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>ButtonId1</TaskpaneId>
-                    <!-- Provide a URL resource id for the location that will be displayed on the task pane. -->
-                    <SourceLocation resid="Contoso.Taskpane.Url" />
+                  <!--This is what happens when the command is triggered (E.g. click on the Ribbon). Supported actions are ExecuteFuncion or ShowTaskpane-->
+                  <!--Look at the FunctionFile.html page for reference on how to implement the function -->
+                  <Action xsi:type="ExecuteFunction">
+                    <!--Name of the function to call. This function needs to exist in the global DOM namespace of the function file-->
+                    <FunctionName>writeText</FunctionName>
                   </Action>
                 </Control>
+
+                <Control xsi:type="Button" id="CRS.TaskpaneButton">
+                  <Label resid="CRS.TaskpaneButton.Label" />
+                  <Supertip>
+                    <Title resid="CRS.TaskpaneButton.Label" />
+                    <Description resid="CRS.TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="CRS.TaskpaneButton.Icon" />
+                    <bt:Image size="32" resid="CRS.TaskpaneButton.Icon" />
+                    <bt:Image size="80" resid="CRS.TaskpaneButton.Icon" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>Button2Id1</TaskpaneId>
+                    <!--Provide a url resource id for the location that will be displayed on the task pane -->
+                    <SourceLocation resid="CRS.Taskpane1.Url" />
+                  </Action>
+                </Control>
+                <!-- Menu example -->
+                <Control xsi:type="Menu" id="CRS.Menu">
+                  <Label resid="CRS.Dropdown.Label" />
+                  <Supertip>
+                    <Title resid="CRS.Dropdown.Label" />
+                    <Description resid="CRS.Dropdown.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="CRS.TaskpaneButton.Icon" />
+                    <bt:Image size="32" resid="CRS.TaskpaneButton.Icon" />
+                    <bt:Image size="80" resid="CRS.TaskpaneButton.Icon" />
+                  </Icon>
+                  <Items>
+                    <Item id="CRS.Menu.Item1">
+                      <Label resid="CRS.Item1.Label"/>
+                      <Supertip>
+                        <Title resid="CRS.Item1.Label" />
+                        <Description resid="CRS.Item1.Tooltip" />
+                      </Supertip>
+                      <Icon>
+                        <bt:Image size="16" resid="CRS.TaskpaneButton.Icon" />
+                        <bt:Image size="32" resid="CRS.TaskpaneButton.Icon" />
+                        <bt:Image size="80" resid="CRS.TaskpaneButton.Icon" />
+                      </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>MyTaskPaneID1</TaskpaneId>
+                        <SourceLocation resid="CRS.Taskpane1.Url" />
+                      </Action>
+                    </Item>
+
+                    <Item id="CRS.Menu.Item2">
+                      <Label resid="CRS.Item2.Label"/>
+                      <Supertip>
+                        <Title resid="CRS.Item2.Label" />
+                        <Description resid="CRS.Item2.Tooltip" />
+                      </Supertip>
+                      <Icon>
+                        <bt:Image size="16" resid="CRS.TaskpaneButton.Icon" />
+                        <bt:Image size="32" resid="CRS.TaskpaneButton.Icon" />
+                        <bt:Image size="80" resid="CRS.TaskpaneButton.Icon" />
+                      </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>MyTaskPaneID2</TaskpaneId>
+                        <SourceLocation resid="CRS.Taskpane2.Url" />
+                      </Action>
+                    </Item>
+
+                  </Items>
+                </Control>
+
               </Group>
-            </OfficeTab>
+
+              <!-- Label of your tab -->
+              <!-- If validating with XSD it needs to be at the end, we might change this before release -->
+              <Label resid="CRS.Tab1.TabLabel" />
+            </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
     </Hosts>
-    
-    <!-- You can use resources across hosts and form factors. -->
     <Resources>
       <bt:Images>
-        <bt:Image id="Contoso.tpicon_16x16" DefaultValue="~remoteAppUrl/Images/Button16x16.png" />
-        <bt:Image id="Contoso.tpicon_32x32" DefaultValue="~remoteAppUrl/Images/Button32x32.png" />
-        <bt:Image id="Contoso.tpicon_80x80" DefaultValue="~remoteAppUrl/Images/Button80x80.png" />
+        <bt:Image id="CRS.TaskpaneButton.Icon" DefaultValue="https://i.imgur.com/FkSShX9.png" />
+        <bt:Image id="CRS.FunctionButton.Icon" DefaultValue="https://i.imgur.com/qDujiX0.png" />
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Contoso.DesktopFunctionFile.Url" DefaultValue="~remoteAppUrl/Functions/FunctionFile.html" />
-        <bt:Url id="Contoso.Taskpane.Url" DefaultValue="~remoteAppUrl/Home.html" />
-        <bt:Url id="Contoso.GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
+        <bt:Url id="CRS.FunctionFile.Url" DefaultValue="https://ociodev.sharepoint.com/sites/AppDevTeamSite/Functions/FunctionFile.html" />
+        <bt:Url id="CRS.Taskpane1.Url" DefaultValue="https://ociodev.sharepoint.com/sites/AppDevTeamSite/Functions/Taskpane.html" />
+        <bt:Url id="CRS.Taskpane2.Url" DefaultValue="https://ociodev.sharepoint.com/sites/AppDevTeamSite/Functions/Taskpane2.html" />
+        <!--LearnMore URL currently not used -->
+        <bt:Url id="CRS.GetStarted.LearnMoreUrl" DefaultValue="https://commandsimple.azurewebsites.net/GetStarted.html">
+        </bt:Url>
       </bt:Urls>
-      <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
-        <bt:String id="Contoso.TaskpaneButton.Label" DefaultValue="Show Taskpane" />
-        <bt:String id="Contoso.Group1Label" DefaultValue="Commands Group" />
-        <bt:String id="Contoso.GetStarted.Title" DefaultValue="Get started with your sample add-in!" />
+        <bt:String id="CRS.FunctionButton.Label" DefaultValue="Execute Function" />
+        <bt:String id="CRS.TaskpaneButton.Label" DefaultValue="Show Taskpane" />
+        <bt:String id="CRS.Dropdown.Label" DefaultValue="Dropdown" />
+        <bt:String id="CRS.Item1.Label" DefaultValue="Show Tool 1" />
+        <bt:String id="CRS.Item2.Label" DefaultValue="Show Tool 2" />
+        <bt:String id="CRS.Tab1.GroupLabel" DefaultValue="CRS Tools" />
+        <bt:String id="CRS.Tab1.TabLabel" DefaultValue="CRS" />
+        <bt:String id="CRS.GetStarted.Title" DefaultValue="Simple add-in was succesfully loaded">
+          <bt:Override Locale="ja-jp" Value="JA-JP Get Started Title" />
+        </bt:String>
       </bt:ShortStrings>
-      <!-- LongStrings max characters==250. -->
       <bt:LongStrings>
-        <bt:String id="Contoso.TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane" />
-        <bt:String id="Contoso.GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started." />
+        <bt:String id="CRS.FunctionButton.Tooltip" DefaultValue="Click to Execute Function" />
+        <bt:String id="CRS.TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane" />
+        <bt:String id="CRS.Dropdown.Tooltip" DefaultValue="Click to Show Options on this Menu" />
+        <bt:String id="CRS.Item1.Tooltip" DefaultValue="Click to Show Taskpane1" />
+        <bt:String id="CRS.Item2.Tooltip" DefaultValue="Click to Show Taskpane2" />
+        <bt:String id="CRS.GetStarted.Description" DefaultValue="Get going by opening CRS tab on the Ribbon">
+          <bt:Override Locale="ja-jp" Value="JA-JP Get Started Title" />
+        </bt:String>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
-  <!-- End Add-in Commands Mode integration. -->
-
 </OfficeApp>

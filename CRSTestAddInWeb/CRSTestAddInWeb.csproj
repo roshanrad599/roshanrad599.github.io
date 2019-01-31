@@ -108,9 +108,12 @@
     <Content Include="Content\sass\Fabric.Color.Mixins.Output.scss" />
     <Content Include="Content\sass\Fabric.Animations.RTL.Output.scss" />
     <Content Include="Content\sass\Fabric.Animations.Output.scss" />
+    <None Include="Properties\PublishProfiles\rdsouza%40ociodev.onmicrosoft.com.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Functions\FunctionFile.html" />
     <Content Include="Functions\FunctionFile.js" />
+    <Content Include="Functions\Taskpane.html" />
+    <Content Include="Functions\Taskpane2.html" />
     <Content Include="Home.css" />
     <Content Include="Home.html" />
     <Content Include="Home.js" />
