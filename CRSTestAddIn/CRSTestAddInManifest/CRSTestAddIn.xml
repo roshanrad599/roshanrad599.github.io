@@ -33,7 +33,7 @@
     <Host Name="Document"/>
   </Hosts>
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://ociodev.sharepoint.com/sites/AppDevTeamSite/Functions/Taskpane.html" />
+    <SourceLocation DefaultValue="https://roshanrad599.github.io/CRSTestAddInWeb/Functions/Taskpane.html" />
   </DefaultSettings>
   <!--EndTaskpaneMode integration -->
 
@@ -122,7 +122,7 @@
                   <Action xsi:type="ShowTaskpane">
                     <TaskpaneId>Button2Id1</TaskpaneId>
                     <!--Provide a url resource id for the location that will be displayed on the task pane -->
-                    <SourceLocation resid="CRS.Taskpane1.Url" />
+                    <SourceLocation resid="CRS.Taskpane3.Url" />
                   </Action>
                 </Control>
                 <!-- Menu example -->
@@ -191,9 +191,10 @@
         <bt:Image id="CRS.FunctionButton.Icon" DefaultValue="https://i.imgur.com/qDujiX0.png" />
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="CRS.FunctionFile.Url" DefaultValue="https://ociodev.sharepoint.com/sites/AppDevTeamSite/Functions/FunctionFile.html" />
-        <bt:Url id="CRS.Taskpane1.Url" DefaultValue="https://ociodev.sharepoint.com/sites/AppDevTeamSite/Functions/Taskpane.html" />
-        <bt:Url id="CRS.Taskpane2.Url" DefaultValue="https://ociodev.sharepoint.com/sites/AppDevTeamSite/Functions/Taskpane2.html" />
+        <bt:Url id="CRS.FunctionFile.Url" DefaultValue="https://roshanrad599.github.io/CRSTestAddInWeb/Functions/FunctionFile.html" />
+        <bt:Url id="CRS.Taskpane1.Url" DefaultValue="https://roshanrad599.github.io/CRSTestAddInWeb/Functions/Taskpane.html" />
+        <bt:Url id="CRS.Taskpane2.Url" DefaultValue="https://roshanrad599.github.io/CRSTestAddInWeb/Functions/Taskpane2.html" />
+        <bt:Url id="CRS.Taskpane3.Url" DefaultValue="https://roshanrad599.github.io/CRSTestAddInWeb/Functions/Taskpane3.html" />
         <!--LearnMore URL currently not used -->
         <bt:Url id="CRS.GetStarted.LearnMoreUrl" DefaultValue="https://commandsimple.azurewebsites.net/GetStarted.html">
         </bt:Url>

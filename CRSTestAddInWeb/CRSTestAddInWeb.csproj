@@ -114,9 +114,9 @@
     <Content Include="Functions\FunctionFile.js" />
     <Content Include="Functions\Taskpane.html" />
     <Content Include="Functions\Taskpane2.html" />
-    <Content Include="Home.css" />
-    <Content Include="Home.html" />
-    <Content Include="Home.js" />
+    <Content Include="Functions\Taskpane3.html" />
+    <Content Include="Functions\Home.css" />
+    <Content Include="Functions\Home.js" />
     <Content Include="Images\AddinIcon.png" />
     <Content Include="Images\Button16x16.png" />
     <Content Include="Images\Button32x32.png" />
